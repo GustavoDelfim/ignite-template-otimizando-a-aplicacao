@@ -46,9 +46,8 @@ export function App() {
       setMovies(response.data);
     });
 
-    api.get<GenreResponseProps>(`genres/${selectedGenreId}`).then(response => {
-      setSelectedGenre(response.data);
-    })
+    const selectedGenre = genres.find(genre => genre.id === selectedGenreId)
+    if (selectedGenre) setSelectedGenre(selectedGenre);
   }, [selectedGenreId]);
 
   const handleClickButton = useCallback((id: number) => {
